@@ -36,6 +36,8 @@ COPY /root /
 ## Duo builder image
 ##
 
+RUN apk --update add --virtual .build-deps build-base automake autoconf libtool git linux-pam-dev
+
 ARG DUO_VERSION=1.11.4
 RUN wget https://dl.duosecurity.com/duo_unix-${DUO_VERSION}.tar.gz && \
     mkdir -p src && \
