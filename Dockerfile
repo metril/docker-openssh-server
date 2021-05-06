@@ -31,3 +31,20 @@ RUN \
 
 # add local files
 COPY /root /
+
+##
+## Duo builder image
+##
+FROM builder as duo-builder
+
+ARG DUO_VERSION=1.11.4
+RUN wget https://dl.duosecurity.com/duo_unix-${DUO_VERSION}.tar.gz && \
+    mkdir -p src && \
+    tar -zxf duo_unix-${DUO_VERSION}.tar.gz --strip-components=1 -C src
+
+RUN cd src && \
+    ./configure \
+        --with-pam=/dist/lib64/security \
+        --prefix=/dist/usr && \
+    make && \
+    make install
