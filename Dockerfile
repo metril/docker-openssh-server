@@ -35,7 +35,6 @@ COPY /root /
 ##
 ## Duo builder image
 ##
-FROM builder as duo-builder
 
 ARG DUO_VERSION=1.11.4
 RUN wget https://dl.duosecurity.com/duo_unix-${DUO_VERSION}.tar.gz && \
